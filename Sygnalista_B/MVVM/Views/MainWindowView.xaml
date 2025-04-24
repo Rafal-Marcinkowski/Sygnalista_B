@@ -1,0 +1,128 @@
+﻿<Window
+    x:Class="Sygnalista_B.MVVM.Views.MainWindowView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Sygnalista_B"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title=""
+    Width="900"
+    Height="710"
+    WindowStyle="None"
+    mc:Ignorable="d">
+
+    <Border BorderBrush="Black" BorderThickness="1">
+        <Grid Style="{StaticResource BackgroundStyle}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="16*" />
+                <ColumnDefinition Width="1.5*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel
+                Grid.Column="1"
+                VerticalAlignment="Top"
+                Orientation="Horizontal">
+                <Button
+                    Width="20"
+                    Height="20"
+                    BorderBrush="Black"
+                    Click="ChromGoBack"
+                    Content="←"
+                    FontSize="8"
+                    FontWeight="Bold" />
+
+                <Button
+                    Width="10"
+                    Height="10"
+                    Margin="45,0,0,10"
+                    BorderBrush="Black"
+                    Click="Shutdown"
+                    Content=""
+                    FontWeight="Bold" />
+
+            </StackPanel>
+
+            <Border
+                Grid.Row="1"
+                Grid.Column="0"
+                BorderBrush="Black"
+                BorderThickness="1">
+                <cefSharp:ChromiumWebBrowser x:Name="chrome" Address="https://---------" />
+            </Border>
+
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <StackPanel
+                    Grid.Row="1"
+                    VerticalAlignment="Bottom"
+                    Orientation="Vertical">
+                    <Button
+                        Width="15"
+                        Height="15"
+                        BorderBrush="Black"
+                        Command="{Binding ForceAutoScriptCommand}"
+                        Content="A"
+                        FontSize="8"
+                        FontWeight="Bold"
+                        Style="{StaticResource forceAutoScriptButtonStyle}" />
+
+                    <Button
+                        Width="15"
+                        Height="15"
+                        BorderBrush="Black"
+                        Command="{Binding ForceCaptchaCommand}"
+                        Content="C"
+                        FontSize="8"
+                        FontWeight="Bold"
+                        Style="{StaticResource forceFillingCaptchaButtonStyle}" />
+
+                    <Button
+                        Width="auto"
+                        Height="25"
+                        BorderBrush="Black"
+                        Command="{Binding ExecuteSygnalista}"
+                        Content=""
+                        FontWeight="Bold" />
+                </StackPanel>
+            </Grid>
+
+            <TextBlock
+                Width="550"
+                MaxHeight="120"
+                Margin="25,195,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                FontSize="14"
+                FontWeight="Medium"
+                Text="{Binding CompanyInfoManager.CompanyName}"
+                TextWrapping="Wrap" />
+
+            <TextBlock
+                Width="550"
+                MaxHeight="120"
+                Margin="650,195,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                FontSize="14"
+                FontWeight="Medium"
+                Text="{Binding CompanyInfoManager.MedianaText}"
+                TextWrapping="Wrap" />
+
+            <TextBlock
+                Width="550"
+                MaxHeight="120"
+                Margin="125,195,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                FontSize="14"
+                FontWeight="Medium"
+                Text="{Binding CompanyInfoManager.Capitalization}"
+                TextWrapping="Wrap" />
+        </Grid>
+    </Border>
+</Window>
